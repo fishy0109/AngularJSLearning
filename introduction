@@ -1,0 +1,37 @@
+/* 
+AngularJS 通过 ng-directives 扩展了 HTML。
+ng-app 指令定义一个 AngularJS 应用程序。
+ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+ng-bind 指令把应用程序数据绑定到 HTML 视图。
+*/
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app=""> //ng-app 指令告诉 AngularJS，<div> 元素是 AngularJS 应用程序 的"所有者"
+ 
+<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="name"></p> //ng-model 指令把输入域的值绑定到应用程序变量 name
+<p ng-bind="name"></p> //ng-bind 指令把应用程序变量 name 绑定到某个段落的 innerHTML
+<p>My first expression: I am so excited for the {{  1+1  }} version.</p> //AngularJS 表达式写在双大括号内：{{ expression }}
+</div>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+First name: <input type="text" ng-model="firstname">
+Last name: <input type="text" ng-model="lastname">
+<br>
+Full name: {{ firstname+ " "+ lastname}}
+</div>
+
+<script>
+var app = angular.module('myApp',[]); //AngularJS 模块（Module） 定义了 AngularJS 应用
+app.controller('myCtrl', function($scope){  //AngularJS 控制器（Controller） 用于控制 AngularJS 应用
+	$scope.firstname="Nina";
+	$scope.lastname="Lee";
+});
+</script>
+
+</body>
+</html>
