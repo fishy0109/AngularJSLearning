@@ -25,6 +25,22 @@ Last name: <input type="text" ng-model="lastname">
 Full name: {{ firstname+ " "+ lastname}}
 </div>
 
+/*类似于 JavaScript 表达式，AngularJS 表达式可以包含字母，操作符，变量。
+与 JavaScript 表达式不同，AngularJS 表达式可以写在 HTML 中。
+与 JavaScript 表达式不同，AngularJS 表达式不支持条件判断，循环及异常。
+与 JavaScript 表达式不同，AngularJS 表达式支持过滤器*/
+<div ng-app="" ng-init="person={firstname:'Nina', lastname:'Lee'}">  //AngularJS对象
+<p>Lastname is: <span ng-bind="person.lastname"></span></p>
+</div>
+
+<div ng-app="" ng-init="names=['Emma','Linda','Fran']"> //ng-repeat 指令会重复一个 HTML 元素
+ <ul>
+ 	<li ng-repeat="x in names">
+ 	{{x}}
+ 	</li>
+ </ul>
+</div>
+
 <script>
 var app = angular.module('myApp',[]); //AngularJS 模块（Module） 定义了 AngularJS 应用
 app.controller('myCtrl', function($scope){  //AngularJS 控制器（Controller） 用于控制 AngularJS 应用
