@@ -1,0 +1,38 @@
+/* 
+AngularJS 通过 ng-directives 扩展了 HTML。
+ng-app 指令定义一个 AngularJS 应用程序。
+ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+ng-bind 指令把应用程序数据绑定到 HTML 视图。
+*/
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body ng-app="myApp">
+
+/*你可以使用 .directive 函数来添加自定义的指令。
+要调用自定义指令，HTML 元素上需要添加自定义指令名。
+使用驼峰法camel case name来命名一个指令， testdirective, 但在使用它时需要以 - 分割, test-directive:
+*/
+
+<test-directive></test-directive> //通过元素名element name调用invoke directive
+<div test-directive></div> //attribute
+<div class="test-directive"></div> //class
+<!-- directive: test-directive --> //comment
+
+/* Restrictions */
+
+
+<script>
+var app = angular.module("myApp", []);
+app.directive("testdirective", function(){
+	return {
+		restrict: "A",   //限制条件，只能通过attribute的方式来invoke，restrict默认值为EA- element name & attribute
+		template: "<h1>Made by a directive!</h1>"
+	};
+});
+</script>
+</div>
+
+</body>
+</html>

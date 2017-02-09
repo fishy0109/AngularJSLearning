@@ -1,0 +1,77 @@
+<!--
+ng-model 指令用于绑定应用程序数据到 HTML 控制器(input, select, textarea)的值
+
+ng-model 指令根据表单域的状态添加/移除以下类：
+ng-empty
+ng-not-empty
+ng-touched
+ng-untouched
+ng-valid
+ng-invalid
+ng-dirty
+ng-pending
+ng-pristine
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+input.ng-invalid {
+	background-color: red;
+}
+input.ng-touched {
+	background-color: blue;
+}
+input.ng-not-empty {   /* buhaoyong ?*/
+	background-color: yellow;
+}
+</style>
+</head>
+<body>
+
+<form ng-app="myApp" name="myForm">
+
+<div ng-controller="myCtrl">
+Name: <input type="text" ng-model="myname">
+<h1>{{ hello }}</h1>
+<button ng-click="sayhello()">Click me!</button>
+
+<h2>{{ lastnames }}</h2>
+<ul>
+<li ng-repeat="x in names">
+	{{ x }} {{ lastnames }}
+</li>
+</ul>
+</div>
+
+<div>
+Email:
+<input type="email" name="myAdd" ng-model="myText" ng-init="myText = 'lalala@ibm.com' " required>
+<span ng-show="myForm.myAdd.$error.email">The email address is not valid.</span>
+<p>Valid: {{ myForm.myAdd.$valid }}</p>   <!--如果输入的值是合法的则为 true  -->
+<p>Dirty: {{ myForm.myAdd.$dirty }}</p>    <!--如果值改变则为 true  -->
+<p>Touched: {{ myForm.myAdd.$touched }}</p>  <!-- 如果通过触屏点击则为 true  -->
+</div>
+</form>
+
+<script>
+/* 
+AngularJS 应用组成如下：
+View(视图), 即 HTML。
+Model(模型), 当前视图中可用的数据。
+Controller(控制器), 即 JavaScript 函数，可以添加或修改属性。
+*/
+var app = angular.module("myApp",[]);
+app.controller("myCtrl", function($scope,$rootScope){
+	$scope.myname="lalala";
+	$scope.sayhello = function(){
+		$scope.hello = "Hello " + $scope.myname + " it's me!";
+	};
+	$scope.names = ["Nina", "Fishy", "Emma"];
+	$rootScope.lastnames = "Lawrence";
+});
+</script>
+
+</body>
+</html>

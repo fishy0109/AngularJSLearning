@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">  
+	<!-- AngularJS 应用程序由 ng-app 定义。应用程序在 <div> 内运行  ng-controller="myCtrl"属性是一个 AngularJS 指令。用于定义一个控制器 -->
+	Firstname: <input type="text" ng-model="firstname"><br/>  
+	<!--ng-model 指令绑定输入域到控制器的属性（firstName 和 lastName）-->
+	Lastname: <input type="text" ng-model="lastname"><br/>
+	Full name: {{ firstname + " "+ lastname }}
+</div>
+
+<!-- 在大型的应用程序中，通常是把控制器存储在外部文件中-->
+<script>
+var app = angular.module("myApp",[]);
+app.controller("myCtrl", function($scope){   
+    //myCtrl 函数是一个 JavaScript 函数,AngularJS 使用$scope 对象来调用控制器
+    //在 AngularJS 中， $scope 是一个应用对象(属于应用变量和函数)
+    //控制器的 $scope （相当于作用域、控制范围）用来保存AngularJS Model(模型)的对象
+    //控制器在作用域中创建了两个属性 (firstName 和 lastName)
+	$scope.firstname = "Nina";
+	$scope.lastname = "Lawrence";
+	$scope.fullname = function(){
+		return $scope.firstname + " "+ $scope.lastname;
+	};
+});
+</script>
+
+</body>
+</html>
